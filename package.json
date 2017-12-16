@@ -1,0 +1,18 @@
+{
+  "fitbit": {
+    "appUUID": "01cee52c-d061-4bf4-a669-906ae789d936",
+    "appType": "app",
+    "appDisplayName": "SaltyDog",
+    "iconFile": "resources/icon.png",
+    "wipeColor": "#2196f3",
+    "requestedPermissions": [
+      "access_location",
+      "run_background"
+    ],
+    "i18n": {
+      "en": {
+        "name": "SaltyDog"
+      }
+    }
+  }
+}

@@ -1,0 +1,61 @@
+.sensor-label {
+  font-family: System-Regular;
+  font-size: 36;
+  x: 19;
+  fill: #47A8FF;
+  text-anchor: start;
+  text-length: 32;
+}
+
+.sensor-data {
+  x: 86;
+  font-family: Fabrikat-Black;
+  font-size: 70;
+  text-anchor: start;
+  fill: white;
+  text-length: 32;
+}
+
+.dir {
+  width: 50;
+  height: 88;
+  text-anchor: middle;
+  transform: translate(-50%,38px);
+}
+
+#sog-label {
+  y: 180;
+}
+
+#sog-data {
+  y: 180;
+}
+
+#heading-label {
+  y: 230;
+  font-size: 36;
+}
+
+#heading-data {
+  font-size: 32;
+  x: 103;
+  y: 230;
+}
+
+#chron {
+  x: 19;
+  y: 81;
+  font-size: 100;
+}
+
+.compass {
+  fill: firebrick;
+  font-family: Colfax-Bold;
+  
+}
+
+
+
+
+
+
