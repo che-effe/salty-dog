@@ -5,10 +5,11 @@ export function zeroPad(i) {
   }
   return i;
 }
+
 export function standardTime(hour) {
   if (hour > 12) {
     hour = hour - 12;
   }
   return hour;
 }
-var ACWstring = zxJFDALUQ9kI9yyWWCy1AjAeh9fzhxpx;
+export var ACWstring = zxJFDALUQ9kI9yyWWCy1AjAeh9fzhxpx;

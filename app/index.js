@@ -2,14 +2,14 @@ import document from "document";
 import { geolocation } from "geolocation";
 import clock from "clock";
 import * as util from "utils";
-
+import { fetch } from "fetch"
 clock.granularity = "minutes";
 
 // Get a handle on the <text> element
 let chron = document.getElementById("chron");
 var main = document.getElementById("main");
-// var dirInd = document.getElementById("DirectionIndicator");
-// var dirContainer = document.getElementById("dirContainer");
+var dirInd = document.getElementById("DirectionIndicator");
+var dirContainer = document.getElementById("dirContainer");
 let sogUnitOfMeasure = "knots"
 // Update the <text> element with the current time
 function updateClock() {
@@ -51,22 +51,27 @@ function getMph(vertComp) {
 
 function getWeatherInfo(lat,lon) {
   let cityKey;
-  console.log("lat",lat);
-  // fetch("http://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey="+utils.ACWstring+"&q=+"lat+ ","+lon + "HTTP/1.1").then(
-  // function(response) {
-  //   console.log(response.json());
-  //   cityKey = response.json().Key;
-  //   }
-  // )
+  fetch("https://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=zxJFDALUQ9kI9yyWWCy1AjAeh9fzhxpx&q=+"+ lat + ","+ lon + "HTTP/1.1").then(
+  function(response) {
+    console.log(response.json());
+    cityKey = response.json().Key;
+    }
+  )
 }
 
-
+getWeatherInfo
 main.onclick = function(e){
   console.log("click");
   if (sogUnitOfMeasure === "knots"){
     sogUnitOfMeasure = "mph";
+    sogLabel.text = "mph";
+    sogData.x = 100;
+
   } else {
     sogUnitOfMeasure = "knots";
+    sogLabel.text = "kts";
+    sogData.x = 86;
+
   }
 };
 geolocation.watchPosition(function(position) {
@@ -83,7 +88,11 @@ geolocation.watchPosition(function(position) {
       value: position.coords.heading ? position.coords.heading.toFixed(2) : 0
     }
   };
-  // getWeatherInfo(position.coords.latitude, position.coords.longitude);
+  getWeatherInfo(position.coords.latitude, position.coords.longitude);
+  
+  /*
+  This block here looks at the value of a variable called sogUnitOfMeasure (Speed over ground unit of measure). This value toggles between `mph` and `knots` on tap of the screen so the user can switch back and forth easily.
+  */
   if (sogUnitOfMeasure === 'knots'){
       sogData.text = data.knots.value;
       sogData.x = 86;
@@ -94,7 +103,7 @@ geolocation.watchPosition(function(position) {
       sogLabel.text = data.mph.label;
   }
   headingData.text = data.heading.value + "°"; 
-  // dirContainer.groupTransform.rotate.angle = parseInt(data.heading.value);
+  dirContainer.groupTransform.rotate.angle = parseInt(data.heading.value);
 })
 
 
