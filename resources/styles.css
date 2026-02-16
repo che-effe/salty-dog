@@ -15,7 +15,10 @@
   fill: white;
   text-length: 32;
 }
-
+.wavy {
+  stroke:none;
+  fill: #47A8FF;
+}
 .dir {
   width: 50;
   height: 88;
