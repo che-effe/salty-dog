@@ -1,7 +1,7 @@
 import document from "document";
 import { geolocation } from "geolocation";
 import clock from "clock";
-import * as util from "utils";
+import * as util from "./utils.js";
 
 clock.granularity = "minutes";
 
@@ -9,7 +9,7 @@ clock.granularity = "minutes";
 let chron = document.getElementById("chron");
 var main = document.getElementById("main");
 // var dirInd = document.getElementById("DirectionIndicator");
-// var dirContainer = document.getElementById("dirContainer");
+var dirContainer = document.getElementById("dirContainer");
 let sogUnitOfMeasure = "knots"
 // Update the <text> element with the current time
 function updateClock() {
@@ -65,8 +65,14 @@ main.onclick = function(e){
   console.log("click");
   if (sogUnitOfMeasure === "knots"){
     sogUnitOfMeasure = "mph";
+    sogLabel.text = "mph"
+    sogData.groupTransform.x = 100;
+
   } else {
     sogUnitOfMeasure = "knots";
+    sogLabel.text = "kts"
+    sogData.groupTransform.x = 86;
+
   }
 };
 geolocation.watchPosition(function(position) {
@@ -84,17 +90,9 @@ geolocation.watchPosition(function(position) {
     }
   };
   // getWeatherInfo(position.coords.latitude, position.coords.longitude);
-  if (sogUnitOfMeasure === 'knots'){
-      sogData.text = data.knots.value;
-      sogData.x = 86;
-      sogLabel.text = data.knots.label;
-  } else {
-      sogData.text = data.mph.value;
-      sogData.x = 100;
-      sogLabel.text = data.mph.label;
-  }
+ 
   headingData.text = data.heading.value + "°"; 
-  // dirContainer.groupTransform.rotate.angle = parseInt(data.heading.value);
+  dirContainer.groupTransform.rotate.angle = parseInt(data.heading.value);
 })
 
 

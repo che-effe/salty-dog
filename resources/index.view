@@ -1,0 +1,29 @@
+<svg id ="main" pointer-events="visible">
+  <g id="dirContainer" pointer-events="visible" transform="translate(275,220)">
+    <animateTransform id="animator" attributeType="rotate" from="0" to="360" begin="click" dur="1" />
+    <image width="50" height="80" x="$-25" y="$-44" id="DirectionIndicator" class="dir" href="WindVane-N.png" />
+  </g>
+  <text id="chron" class="sensor-data"/>
+  <text id="sog-label" class="sensor-label">kts
+  </text>
+  <text id="sog-data" class="sensor-data"> ... </text>
+  <text id="heading-label" class="sensor-label">hdg</text>
+  <text id="heading-data" class="sensor-data"> ... </text>
+  <g transform="translate(0,310)">
+    <path
+      d="
+        M 0 4
+        C 14 -2 42 -2 56 4
+        C 70 10 98 10 112 4
+        C 126 -2 154 -2 168 4
+        C 182 10 210 10 224 4
+        C 238 -2 266 -2 280 4
+        C 294 10 322 10 336 4
+        L 336 60
+        L 0 60
+        Z
+      "
+      fill="#0828a8"
+    />
+  </g>
+</svg>
