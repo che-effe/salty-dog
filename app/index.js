@@ -8,7 +8,6 @@ clock.granularity = "minutes";
 // Get a handle on the <text> element
 let chron = document.getElementById("chron");
 var main = document.getElementById("main");
-// var dirInd = document.getElementById("DirectionIndicator");
 var dirContainer = document.getElementById("dirContainer");
 let sogUnitOfMeasure = "knots"
 // Update the <text> element with the current time
@@ -30,14 +29,6 @@ function updateClock() {
 // Update the clock every tick event
 clock.ontick = () => updateClock();
 
-let windData = {
-  speed: {
-    value: 0
-  },
-  direction: {
-    value: 180
-  }
-}
 let sogData = document.getElementById("sog-data");
 let sogLabel = document.getElementById("sog-label");
 let headingData = document.getElementById("heading-data");
@@ -90,7 +81,7 @@ geolocation.watchPosition(function(position) {
     }
   };
   // getWeatherInfo(position.coords.latitude, position.coords.longitude);
- 
+ sogData.text = data[sogUnitOfMeasure].value + " " + data[sogUnitOfMeasure].label;
   headingData.text = data.heading.value + "°"; 
   dirContainer.groupTransform.rotate.angle = parseInt(data.heading.value);
 })

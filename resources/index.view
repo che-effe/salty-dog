@@ -1,52 +1,60 @@
 <svg id ="main" pointer-events="visible">
   <g>
-    <gradientRect width="100%" height="50" y="295"
-      gradient-type="linear"
-      gradient-x1="0" gradient-y1="10"
-      gradient-x2="0" gradient-y2="40"
-      gradient-color1="#116ab7" gradient-color2="#031c6e" >
-    </gradientRect>
     <g transform="translate(0,290)">
-    <g id="waveMove">
-      <animateTransform
-        attributeName="transform"
-        attributeType="translate"
-        from="-336"
-        to="0"
-        dur="6"
-        easing="ease"
-        repeatCount="indefinite"
-      />
-      
-
-      <!-- 2 tiles wide (672px). Tile length is 336px so it loops seamlessly. -->
-      <path
-        d="
-          M 0 4
-          C 14 -3 42 -3 56 4
-          C 70 11 98 11 112 4
-          C 126 -1 154 -1 168 4
-          C 182 9 210 9 224 4
-          C 238 -4 266 -4 280 4
-          C 294 12 322 12 336 4
-
-          C 350 -3 378 -3 392 4
-          C 406 11 434 11 448 4
-          C 462 -1 490 -1 504 4
-          C 518 9 546 9 560 4
-          C 574 -4 602 -4 616 4
-          C 630 12 658 12 672 4
-
-          L 672 60
-          L 0 60
-          Z
-        "
-        fill="#116ab7"
-        stroke-width="15"
-
-      />
+      <g>
+        <animateTransform 
+          attributeType="rotate" 
+          from="-1" 
+          to="1"  
+          dur="6"
+          easing="ease-in-out"
+          repeatCount="indefinite"
+        />
+        <animate 
+          attributeName="opacity" 
+          from="1" 
+          to="0.3"  
+          dur="6"
+          repeatCount="indefinite"
+        />
+        <animateTransform
+          attributeName="transform"
+          attributeType="translate"
+          from="-336"
+          to="0"
+          dur="6"
+          easing="ease-in-out"
+          repeatCount="indefinite"
+        />
+        <image width="672" height="60"  id="Waves" href="waves.png" />
+      </g>
+      <g>
+        <animateTransform 
+          attributeType="rotate" 
+          from="1" 
+          to="-1"  
+          dur="6" 
+          repeatCount="indefinite"
+        />
+         <animate 
+          attributeName="opacity" 
+          from="0.3" 
+          to="1"  
+          dur="6"
+          repeatCount="indefinite"
+        />
+        <animateTransform
+          attributeName="transform"
+          attributeType="translate"
+          from="0"
+          to="-336"
+          dur="6"
+          easing="ease-in-out"
+          repeatCount="indefinite"
+        />
+            <image width="672" height="60"  id="Waves" href="waves.png" />
+      </g>
     </g>
-  </g>
   </g>
   
   <g id="dirContainer" pointer-events="visible" transform="translate(275,225)">
