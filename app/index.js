@@ -2,8 +2,32 @@ import document from "document";
 import { geolocation } from "geolocation";
 import clock from "clock";
 import * as util from "./utils.js";
+import { fitbit_animate } from "fitbit-animate"; // If using the library
 
 clock.granularity = "minutes";
+let wave1 = document.getElementById("wave1");
+let waveImage = document.getElementById("waveImage");
+let Xdirection = 'in'
+let Ydirection = 'down'
+setInterval(() => {
+  if (Xdirection === 'out') {
+    Xdirection = 'in';
+    wave1.animate("load"); // Specify the name of the event to trigger
+  } else {
+    Xdirection = 'out';
+    wave1.animate("collapse"); // Specify the name of the event to trigger
+  }
+}, 10000)
+setInterval(() => {
+// wave1.groupTransform.translate.x = 0;
+  if (Ydirection === 'up') {
+    Ydirection = 'down';
+    wave1.animate("enable"); // Specify the name of the event to trigger
+  } else {
+    Ydirection = 'up';
+    wave1.animate("disable"); // Specify the name of the event to trigger
+  }
+}, 1000)
 
 // Get a handle on the <text> element
 let chron = document.getElementById("chron");
@@ -39,7 +63,6 @@ function getKnots(vertComp) {
 function getMph(vertComp) {
   return (vertComp/0.447039259).toFixed(1);
 }
-
 function getWeatherInfo(lat,lon) {
   let cityKey;
   console.log("lat",lat);
