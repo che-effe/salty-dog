@@ -63,6 +63,9 @@ function getKnots(vertComp) {
 function getMph(vertComp) {
   return (vertComp/0.447039259).toFixed(1);
 }
+function getKph(vertComp) {
+  return (vertComp*3.6).toFixed(1);
+}
 function getWeatherInfo(lat,lon) {
   let cityKey;
   console.log("lat",lat);
@@ -82,7 +85,12 @@ main.onclick = function(e){
     sogLabel.text = "mph"
     sogData.groupTransform.x = 100;
 
-  } else {
+  } else if (sogUnitOfMeasure === "mph") {
+    sogUnitOfMeasure = "kph";
+    sogLabel.text = "kph"
+    sogData.groupTransform.x = 100;
+
+  } else if (sogUnitOfMeasure === "kph") {
     sogUnitOfMeasure = "knots";
     sogLabel.text = "kts"
     sogData.groupTransform.x = 86;
@@ -99,12 +107,16 @@ geolocation.watchPosition(function(position) {
       value: position.coords.speed ? getMph(position.coords.speed) : 0,
       label: "mph"
     },
+    kph: {
+      value: position.coords.speed ? getKph(position.coords.speed) : 0,
+      label: "kph"
+    },
     heading: {
       value: position.coords.heading ? position.coords.heading.toFixed(2) : 0
     }
   };
   // getWeatherInfo(position.coords.latitude, position.coords.longitude);
- sogData.text = data[sogUnitOfMeasure].value + " " + data[sogUnitOfMeasure].label;
+  sogData.text = data[sogUnitOfMeasure].value;
   headingData.text = data.heading.value + "°"; 
   dirContainer.groupTransform.rotate.angle = parseInt(data.heading.value);
 })
