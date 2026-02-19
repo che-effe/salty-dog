@@ -1,0 +1,49 @@
+<svg id ="main" pointer-events="visible">
+  <g>
+    <g transform="translate(0,290)">
+      <g id="wave1" class="wavy">
+        <image id="waveImage" width="672" height="60" href="waves.png">
+          <animate begin="load"
+              attributeName="x"
+              from="-336"
+              to="0"
+              dur="10"
+              easing="ease-in-out"
+              />
+
+          <animate begin="collapse"
+              attributeName="x"
+              from="0"
+              to="-336"
+              dur="10"
+              easing="ease-in-out"
+              />
+          
+        </image>        
+      </g>
+      <!-- <g id="wave2" class="wavy">
+        <image width="672" height="60"  id="Waves" href="waves.png" />
+      </g> -->
+                        <animateTransform id="animator" attributeType="rotate" from="3" to="0" begin="load" dur="5" />
+
+                            <animateTransform id="animator" attributeType="rotate" from="0" to="3" begin="collapse" dur="5" />
+
+          <animateTransform attributeType="translate"
+              from="0,290" to="0, 10" begin="highlight" dur="1" />
+          <animateTransform attributeType="translate"
+              from="0,10" to="0,290" begin="unhighlight" dur="1" />
+    </g>
+    
+  </g>
+  
+  <g id="dirContainer" pointer-events="visible" transform="translate(275,225)">
+    <animateTransform id="animator" attributeType="rotate" from="0" to="360" begin="click" dur="1" />
+    <image width="50" height="80" x="$-25" y="$-55" id="DirectionIndicator" class="dir" href="WindVane-N.png" />
+  </g>
+  <text id="chron" class="sensor-data"/>
+  <text id="sog-label" class="sensor-label">kts
+  </text>
+  <text id="sog-data" class="sensor-data"> ... </text>
+  <text id="heading-label" class="sensor-label">hdg</text>
+  <text id="heading-data" class="sensor-data"> ... </text>
+</svg>

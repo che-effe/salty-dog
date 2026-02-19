@@ -11,4 +11,3 @@ export function standardTime(hour) {
   }
   return hour;
 }
-var ACWstring = zxJFDALUQ9kI9yyWWCy1AjAeh9fzhxpx;

@@ -24,27 +24,27 @@
 }
 
 #sog-label {
-  y: 180;
+  y: 200;
 }
 
 #sog-data {
-  y: 180;
+  y: 200;
 }
 
 #heading-label {
-  y: 230;
+  y: 250;
   font-size: 36;
 }
 
 #heading-data {
   font-size: 32;
   x: 103;
-  y: 230;
+  y: 250;
 }
 
 #chron {
   x: 19;
-  y: 81;
+  y: 120;
   font-size: 100;
 }
 

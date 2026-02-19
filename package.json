@@ -1,4 +1,12 @@
 {
+  "name": "salty-dog",
+  "version": "2.0.0",
+  "private": true,
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "@fitbit/sdk": "~6.1.0",
+    "@fitbit/sdk-cli": "^1.7.3"
+  },
   "fitbit": {
     "appUUID": "01cee52c-d061-4bf4-a669-906ae789d936",
     "appType": "app",
@@ -9,10 +17,22 @@
       "access_location",
       "run_background"
     ],
+    "buildTargets": [
+      "atlas",
+      "vulcan"
+    ],
     "i18n": {
       "en": {
         "name": "SaltyDog"
       }
-    }
+    },
+    "defaultLanguage": "en-US"
+  },
+  "scripts": {
+    "build": "fitbit-build",
+    "debug": "fitbit"
+  },
+  "dependencies": {
+    "fitbit-animate": "^0.1.0"
   }
 }
