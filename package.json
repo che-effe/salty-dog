@@ -19,8 +19,7 @@
     ],
     "buildTargets": [
       "atlas",
-      "vulcan"
-    ],
+      "vulcan"    ],
     "i18n": {
       "en": {
         "name": "SaltyDog"
@@ -31,8 +30,5 @@
   "scripts": {
     "build": "fitbit-build",
     "debug": "fitbit"
-  },
-  "dependencies": {
-    "fitbit-animate": "^0.1.0"
   }
 }

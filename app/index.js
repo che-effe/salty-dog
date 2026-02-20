@@ -1,33 +1,68 @@
 import document from "document";
 import { geolocation } from "geolocation";
 import clock from "clock";
+import { display } from "display";
 import * as util from "./utils.js";
-import { fitbit_animate } from "fitbit-animate"; // If using the library
 
 clock.granularity = "minutes";
 let wave1 = document.getElementById("wave1");
 let waveImage = document.getElementById("waveImage");
 let Xdirection = 'in'
 let Ydirection = 'down'
-setInterval(() => {
-  if (Xdirection === 'out') {
-    Xdirection = 'in';
-    wave1.animate("load"); // Specify the name of the event to trigger
-  } else {
-    Xdirection = 'out';
-    wave1.animate("collapse"); // Specify the name of the event to trigger
+
+// Interval references for battery optimization
+let waveXInterval = null;
+let waveYInterval = null;
+
+function startAnimationIntervals() {
+  if (!waveXInterval) {
+    waveXInterval = setInterval(() => {
+      if (Xdirection === 'out') {
+        Xdirection = 'in';
+        wave1.animate("load"); // Specify the name of the event to trigger
+      } else {
+        Xdirection = 'out';
+        wave1.animate("collapse"); // Specify the name of the event to trigger
+      }
+    }, 10000);
   }
-}, 10000)
-setInterval(() => {
-// wave1.groupTransform.translate.x = 0;
-  if (Ydirection === 'up') {
-    Ydirection = 'down';
-    wave1.animate("enable"); // Specify the name of the event to trigger
-  } else {
-    Ydirection = 'up';
-    wave1.animate("disable"); // Specify the name of the event to trigger
+  
+  if (!waveYInterval) {
+    waveYInterval = setInterval(() => {
+      // wave1.groupTransform.translate.x = 0;
+      if (Ydirection === 'up') {
+        Ydirection = 'down';
+        wave1.animate("enable"); // Specify the name of the event to trigger
+      } else {
+        Ydirection = 'up';
+        wave1.animate("disable"); // Specify the name of the event to trigger
+      }
+    }, 1000);
   }
-}, 1000)
+}
+
+function stopAnimationIntervals() {
+  if (waveXInterval) {
+    clearInterval(waveXInterval);
+    waveXInterval = null;
+  }
+  if (waveYInterval) {
+    clearInterval(waveYInterval);
+    waveYInterval = null;
+  }
+}
+
+// Handle display on/off for battery optimization
+display.addEventListener("change", () => {
+  if (display.on) {
+    startAnimationIntervals();
+  } else {
+    stopAnimationIntervals();
+  }
+});
+
+// Start intervals on app launch
+startAnimationIntervals();
 
 // Get a handle on the <text> element
 let chron = document.getElementById("chron");
