@@ -71,47 +71,47 @@
 
 .stats-label {
   font-family: System-Regular;
-  font-size: 18;
+  font-size: 16;
   fill: #47A8FF;
   text-anchor: start;
   x: 20;
-  y: 60;
+  y: 55;
 }
 
 .stats-value {
   font-family: Fabrikat-Black;
-  font-size: 64;
+  font-size: 48;
   fill: white;
   text-anchor: start;
   x: 20;
-  y: 120;
+  y: 95;
 }
 
 .stats-unit {
   font-family: System-Regular;
-  font-size: 28;
-  fill: #47A8FF;
+  font-size: 24;
+  fill: white;
   text-anchor: start;
-  x: 180;
-  y: 120;
+  x: 120;
+  y: 55;
 }
 
 .stats-label-secondary {
   font-family: System-Regular;
   font-size: 16;
   fill: #47A8FF;
-  text-anchor: end;
-  x: 95% - 20;
-  y: 60;
+  text-anchor: start;
+  x: 20;
+  y: 120;
 }
 
 .stats-value-secondary {
   font-family: Fabrikat-Black;
   font-size: 32;
   fill: white;
-  text-anchor: end;
-  x: 95% - 20;
-  y: 95;
+  text-anchor: start;
+  x: 110;
+  y: 120;
 }
 
 /* Track Map Styles */

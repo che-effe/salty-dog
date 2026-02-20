@@ -6,7 +6,7 @@ import * as util from "./utils.js";
 
 clock.granularity = "minutes";
 let wave1 = document.getElementById("wave1");
-let waveImage = document.getElementById("waveImage");
+let waveTransform = document.getElementById("waveTransform");
 let Xdirection = 'in'
 let Ydirection = 'down'
 
@@ -22,6 +22,8 @@ const view1 = document.getElementById("view1");
 const view2 = document.getElementById("view2");
 const navLeft = document.getElementById("navLeft");
 const navRight = document.getElementById("navRight");
+const chevronLeft = document.getElementById("chevronLeft");
+const chevronRight = document.getElementById("chevronRight");
 
 function switchToView(viewIndex) {
   currentView = viewIndex;
@@ -29,10 +31,16 @@ function switchToView(viewIndex) {
   if (viewIndex === 0) {
     view1.style.display = "inline";
     view2.style.display = "none";
+    // Left grey (can't go back), Right white (can go forward)
+    chevronLeft.style.fill = "#666666";
+    chevronRight.style.fill = "white";
     startAnimationIntervals();
   } else {
     view1.style.display = "none";
     view2.style.display = "inline";
+    // Left white (can go back), Right grey (can't go forward)
+    chevronLeft.style.fill = "white";
+    chevronRight.style.fill = "#666666";
     stopAnimationIntervals();
     updateStatsView();
   }
@@ -88,15 +96,19 @@ function updateStatsView() {
   if (sogUnitOfMeasure === "knots") {
     topspeedValue.text = sessionData.topSpeedKnots.toFixed(1);
     topspeedUnit.text = "kts";
+    // Distance in nautical miles
+    distanceValue.text = sessionData.totalDistance.toFixed(2) + " nm";
   } else if (sogUnitOfMeasure === "mph") {
     topspeedValue.text = sessionData.topSpeedMph.toFixed(1);
     topspeedUnit.text = "mph";
+    // Convert nm to statute miles (1 nm = 1.15078 mi)
+    distanceValue.text = (sessionData.totalDistance * 1.15078).toFixed(2) + " mi";
   } else {
     topspeedValue.text = sessionData.topSpeedKph.toFixed(1);
     topspeedUnit.text = "kph";
+    // Convert nm to kilometers (1 nm = 1.852 km)
+    distanceValue.text = (sessionData.totalDistance * 1.852).toFixed(2) + " km";
   }
-  
-  distanceValue.text = sessionData.totalDistance.toFixed(2) + " nm";
   
   // Update track visualization
   drawTrack();
@@ -191,10 +203,10 @@ function startAnimationIntervals() {
     waveXInterval = setInterval(() => {
       if (Xdirection === 'out') {
         Xdirection = 'in';
-        wave1.animate("load");
+        waveTransform.animate("load");
       } else {
         Xdirection = 'out';
-        wave1.animate("collapse");
+        waveTransform.animate("collapse");
       }
     }, 10000);
   }
@@ -291,17 +303,17 @@ main.onclick = function(e){
   if (sogUnitOfMeasure === "knots"){
     sogUnitOfMeasure = "mph";
     sogLabel.text = "mph"
-    sogData.groupTransform.x = 100;
+    sogData.x = 100;
 
   } else if (sogUnitOfMeasure === "mph") {
     sogUnitOfMeasure = "kph";
     sogLabel.text = "kph"
-    sogData.groupTransform.x = 100;
+    sogData.x = 100;
 
   } else if (sogUnitOfMeasure === "kph") {
     sogUnitOfMeasure = "knots";
     sogLabel.text = "kts"
-    sogData.groupTransform.x = 86;
+    sogData.x = 86;
   }
 };
 geolocation.watchPosition(function(position) {
@@ -326,7 +338,7 @@ geolocation.watchPosition(function(position) {
   // Update main view display
   sogData.text = data[sogUnitOfMeasure].value;
   headingData.text = data.heading.value + "°"; 
-  dirContainer.groupTransform.rotate.angle = parseInt(data.heading.value);
+  dirContainer.groupTransform.rotate.angle = parseInt(-data.heading.value);
   
   // ===========================================
   // SESSION TRACKING - Top Speed & Path
