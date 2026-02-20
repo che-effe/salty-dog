@@ -19,8 +19,7 @@
     ],
     "buildTargets": [
       "atlas",
-      "vulcan"
-    ],
+      "vulcan"    ],
     "i18n": {
       "en": {
         "name": "SaltyDog"
