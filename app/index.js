@@ -2,7 +2,6 @@ import document from "document";
 import { geolocation } from "geolocation";
 import clock from "clock";
 import * as util from "./utils.js";
-import { fitbit_animate } from "fitbit-animate"; // If using the library
 
 clock.granularity = "minutes";
 let wave1 = document.getElementById("wave1");

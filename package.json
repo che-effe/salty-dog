@@ -31,8 +31,5 @@
   "scripts": {
     "build": "fitbit-build",
     "debug": "fitbit"
-  },
-  "dependencies": {
-    "fitbit-animate": "^0.1.0"
   }
 }
