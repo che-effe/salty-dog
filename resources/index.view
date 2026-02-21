@@ -1,94 +1,127 @@
-<svg 
-  id ="main" 
-  pointer-events="visible">
-  <g>
-    <g 
-      transform="translate(0,290)">
-      <g 
-        id="wave1" 
-        class="wavy">
-        <image 
-          id="waveImage" 
-          width="672" 
-          height="60" 
-          href="waves.png">
-          <animate 
-            begin="load"
-            attributeName="x"
-            from="-336"
-            to="0"
-            dur="10"
-            easing="ease-in-out"
-              />
-          <animate 
-            begin="collapse"
-            attributeName="x"
-            from="0"
-            to="-336"
-            dur="10"
-            easing="ease-in-out"
-            />
-        </image>        
+<svg id="main" pointer-events="visible">
+  <!-- View Container - holds both views -->
+  <g id="viewContainer">
+    
+    <!-- VIEW 1: Main Navigation View -->
+    <g id="view1">
+      <g>
+        <g id="waveTransform" transform="translate(0,290)">
+          <g id="wave1" class="wavy">
+            <image 
+              id="waveImage" 
+              width="672" 
+              height="60" 
+              href="waves.png">
+              <animate 
+                begin="load"
+                attributeName="x"
+                from="-336"
+                to="0"
+                dur="10"
+                repeatCount="indefinite"/>
+              <!-- <animate 
+                begin="collapse"
+                attributeName="x"
+                from="0"
+                to="-336"
+                dur="10"
+                easing="ease-in-out" /> -->
+            </image>        
+          </g>
+          <animateTransform 
+            id="animator" 
+            attributeType="rotate" 
+            from="5" 
+            to="-5" 
+            begin="load" 
+            dur="5" />
+          <animateTransform 
+            id="animator" 
+            attributeType="rotate" 
+            from="-5" 
+            to="5" 
+            begin="collapse" 
+            dur="5" />
+          <animateTransform 
+            attributeType="translate"
+            from="0,290" 
+            to="0, 10" 
+            begin="highlight" 
+            dur="1" />
+          <animateTransform 
+            attributeType="translate"
+            from="0,10" 
+            to="0,290" 
+            begin="unhighlight" 
+            dur="1" />
+        </g>
       </g>
-        <animateTransform 
-          id="animator" 
-          attributeType="rotate" 
-          from="3" 
-          to="0" 
-          begin="load" 
-          dur="5" />
-
-        <animateTransform 
-          id="animator" 
-          attributeType="rotate" 
-          from="0" 
-          to="3" 
-          begin="collapse" 
-          dur="5" />
-
-        <animateTransform 
-          attributeType="translate"
-          from="0,290" 
-          to="0, 10" 
-          begin="highlight" 
-          dur="1" />
-        <animateTransform 
-          attributeType="translate"
-          from="0,10" 
-          to="0,290" 
-          begin="unhighlight" 
-          dur="1" />
+      
+      <g 
+        id="dirContainer" 
+        pointer-events="visible" 
+        transform="translate(275,225)">
+        <image 
+          width="50" 
+          height="80" 
+          x="$-25" 
+          y="$-55" 
+          id="DirectionIndicator" 
+          class="dir" 
+          href="WindVane-N.png" />
+      </g>
+      <text id="chron" class="sensor-data" text-length="32"/>
+      <text id="sog-label" class="sensor-label">kts</text>
+      <text id="sog-data" class="sensor-data"> ... </text>
+      <text id="heading-label" class="sensor-label">hdg</text>
+      <text id="heading-data" text-length="32" class="sensor-data"> ... </text>
     </g>
     
+    <!-- VIEW 2: Stats & Track View -->
+    <g id="view2" display="none">
+      <!-- Background -->
+      <rect id="view2-bg" class="view2-background" />
+      
+      <!-- Session Stats Header -->
+      <text id="stats-header" class="stats-header">SESSION STATS</text>
+      
+      <!-- Top Speed Display -->
+      <text id="topspeed-label" class="stats-label">TOP SPEED</text>
+      <text id="topspeed-value" class="stats-value">0.0</text>
+      <text id="topspeed-unit" class="stats-unit">kts</text>
+      
+      <!-- Distance Traveled -->
+      <text id="distance-label" class="stats-label-secondary">DISTANCE</text>
+      <text id="distance-value" class="stats-value-secondary">0.0 nm</text>
+      
+      <!-- Track Map Container -->
+      <g id="trackContainer" transform="translate(20,140)">
+        <rect id="track-bg" class="track-background" />
+        <text id="track-label" class="track-label">TRACK</text>
+        <!-- Path will be drawn here dynamically -->
+        <g id="pathGroup">
+          <!-- Start marker -->
+          <circle id="startMarker" class="start-marker" cx="0" cy="0" r="4" display="none"/>
+          <!-- Current position marker -->
+          <circle id="currentMarker" class="current-marker" cx="0" cy="0" r="5" display="none"/>
+        </g>
+      </g>
+      
+      <!-- Reset Button -->
+      <g id="resetBtn" class="reset-button" pointer-events="visible">
+        <rect id="reset-bg" x="118" y="285" width="100" height="36" rx="8" ry="8" fill="#47A8FF" />
+        <text id="reset-text" x="168" y="310" font-size="18" fill="white" font-family="System-Bold" text-anchor="middle">RESET</text>
+      </g>
+    </g>
   </g>
   
-  <g 
-    id="dirContainer" 
-    pointer-events="visible" 
-    transform="translate(275,225)">
-    <image 
-      width="50" 
-      height="80" 
-      x="$-25" 
-      y="$-55" 
-      id="DirectionIndicator" 
-      class="dir" 
-      href="WindVane-N.png" />
+  <!-- Navigation Chevrons -->
+  <g id="navLeft" pointer-events="visible">
+    <rect x="0" y="260" width="50" height="80" fill="black" opacity="0.3" />
+    <text id="chevronLeft" x="15" y="310" font-size="50" fill="#666666" font-family="System-Bold">&lt;</text>
   </g>
-  <text 
-    id="chron" 
-    class="sensor-data"/>
-  <text 
-    id="sog-label" 
-    class="sensor-label">kts
-  </text>
-  <text 
-    id="sog-data" 
-    class="sensor-data"> ... </text>
-  <text 
-    id="heading-label" 
-    class="sensor-label">hdg</text>
-  <text 
-    id="heading-data" 
-    class="sensor-data"> ... </text>
+  <g id="navRight" pointer-events="visible">
+    <rect x="286" y="260" width="50" height="80" fill="black" opacity="0.3" />
+    <text id="chevronRight" x="296" y="310" font-size="50" fill="white" font-family="System-Bold">&gt;</text>
+  </g>
 </svg>
