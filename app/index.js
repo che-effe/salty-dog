@@ -86,6 +86,13 @@ const pathGroup = document.getElementById("pathGroup");
 const resetBtn = document.getElementById("resetBtn");
 const trackContainer = document.getElementById("trackContainer");
 
+// Track line elements pool
+const MAX_TRACK_LINES = 50;
+const trackLines = [];
+for (let i = 0; i < MAX_TRACK_LINES; i++) {
+  trackLines.push(document.getElementById("trackLine" + i));
+}
+
 // Track map dimensions
 const TRACK_WIDTH = 290;
 const TRACK_HEIGHT = 115;
@@ -115,6 +122,13 @@ function updateStatsView() {
 }
 
 function drawTrack() {
+  // Hide all track lines first
+  for (let i = 0; i < MAX_TRACK_LINES; i++) {
+    if (trackLines[i]) {
+      trackLines[i].style.display = "none";
+    }
+  }
+  
   if (sessionData.trackPoints.length < 2) {
     startMarker.style.display = "none";
     currentMarker.style.display = "none";
@@ -141,11 +155,44 @@ function drawTrack() {
   const scaleY = (TRACK_HEIGHT - 2 * TRACK_PADDING) / latRange;
   const scale = Math.min(scaleX, scaleY);
   
+  // Center the track in the display
+  const scaledWidth = lonRange * scale;
+  const scaledHeight = latRange * scale;
+  const offsetX = (TRACK_WIDTH - scaledWidth) / 2;
+  const offsetY = (TRACK_HEIGHT - scaledHeight) / 2;
+  
   // Convert GPS to screen coords
   function toScreenCoords(lat, lon) {
-    const x = TRACK_PADDING + (lon - minLon) * scale;
-    const y = TRACK_HEIGHT - TRACK_PADDING - (lat - minLat) * scale;
+    const x = offsetX + (lon - minLon) * scale;
+    const y = TRACK_HEIGHT - offsetY - (lat - minLat) * scale;
     return { x, y };
+  }
+  
+  // Downsample track points to fit available line elements
+  const numPoints = sessionData.trackPoints.length;
+  const step = Math.max(1, Math.floor(numPoints / MAX_TRACK_LINES));
+  let sampledPoints = [];
+  
+  for (let i = 0; i < numPoints; i += step) {
+    sampledPoints.push(sessionData.trackPoints[i]);
+  }
+  // Always include the last point
+  if (sampledPoints[sampledPoints.length - 1] !== sessionData.trackPoints[numPoints - 1]) {
+    sampledPoints.push(sessionData.trackPoints[numPoints - 1]);
+  }
+  
+  // Draw track lines between sampled points
+  for (let i = 0; i < sampledPoints.length - 1 && i < MAX_TRACK_LINES; i++) {
+    const p1 = toScreenCoords(sampledPoints[i].lat, sampledPoints[i].lon);
+    const p2 = toScreenCoords(sampledPoints[i + 1].lat, sampledPoints[i + 1].lon);
+    
+    if (trackLines[i]) {
+      trackLines[i].x1 = p1.x;
+      trackLines[i].y1 = p1.y;
+      trackLines[i].x2 = p2.x;
+      trackLines[i].y2 = p2.y;
+      trackLines[i].style.display = "inline";
+    }
   }
   
   // Position start marker

@@ -1,4 +1,5 @@
 <svg id="main" pointer-events="visible">
+
   <!-- View Container - holds both views -->
   <g id="viewContainer">
     
@@ -98,8 +99,58 @@
       <g id="trackContainer" transform="translate(20,140)">
         <rect id="track-bg" class="track-background" />
         <text id="track-label" class="track-label">TRACK</text>
-        <!-- Path will be drawn here dynamically -->
+        <!-- Path lines pool (50 line segments for track visualization) -->
         <g id="pathGroup">
+          <line id="trackLine0" class="track-path" x1="0" y1="0" x2="0" y2="0" display="none"/>
+          <line id="trackLine1" class="track-path" x1="0" y1="0" x2="0" y2="0" display="none"/>
+          <line id="trackLine2" class="track-path" x1="0" y1="0" x2="0" y2="0" display="none"/>
+          <line id="trackLine3" class="track-path" x1="0" y1="0" x2="0" y2="0" display="none"/>
+          <line id="trackLine4" class="track-path" x1="0" y1="0" x2="0" y2="0" display="none"/>
+          <line id="trackLine5" class="track-path" x1="0" y1="0" x2="0" y2="0" display="none"/>
+          <line id="trackLine6" class="track-path" x1="0" y1="0" x2="0" y2="0" display="none"/>
+          <line id="trackLine7" class="track-path" x1="0" y1="0" x2="0" y2="0" display="none"/>
+          <line id="trackLine8" class="track-path" x1="0" y1="0" x2="0" y2="0" display="none"/>
+          <line id="trackLine9" class="track-path" x1="0" y1="0" x2="0" y2="0" display="none"/>
+          <line id="trackLine10" class="track-path" x1="0" y1="0" x2="0" y2="0" display="none"/>
+          <line id="trackLine11" class="track-path" x1="0" y1="0" x2="0" y2="0" display="none"/>
+          <line id="trackLine12" class="track-path" x1="0" y1="0" x2="0" y2="0" display="none"/>
+          <line id="trackLine13" class="track-path" x1="0" y1="0" x2="0" y2="0" display="none"/>
+          <line id="trackLine14" class="track-path" x1="0" y1="0" x2="0" y2="0" display="none"/>
+          <line id="trackLine15" class="track-path" x1="0" y1="0" x2="0" y2="0" display="none"/>
+          <line id="trackLine16" class="track-path" x1="0" y1="0" x2="0" y2="0" display="none"/>
+          <line id="trackLine17" class="track-path" x1="0" y1="0" x2="0" y2="0" display="none"/>
+          <line id="trackLine18" class="track-path" x1="0" y1="0" x2="0" y2="0" display="none"/>
+          <line id="trackLine19" class="track-path" x1="0" y1="0" x2="0" y2="0" display="none"/>
+          <line id="trackLine20" class="track-path" x1="0" y1="0" x2="0" y2="0" display="none"/>
+          <line id="trackLine21" class="track-path" x1="0" y1="0" x2="0" y2="0" display="none"/>
+          <line id="trackLine22" class="track-path" x1="0" y1="0" x2="0" y2="0" display="none"/>
+          <line id="trackLine23" class="track-path" x1="0" y1="0" x2="0" y2="0" display="none"/>
+          <line id="trackLine24" class="track-path" x1="0" y1="0" x2="0" y2="0" display="none"/>
+          <line id="trackLine25" class="track-path" x1="0" y1="0" x2="0" y2="0" display="none"/>
+          <line id="trackLine26" class="track-path" x1="0" y1="0" x2="0" y2="0" display="none"/>
+          <line id="trackLine27" class="track-path" x1="0" y1="0" x2="0" y2="0" display="none"/>
+          <line id="trackLine28" class="track-path" x1="0" y1="0" x2="0" y2="0" display="none"/>
+          <line id="trackLine29" class="track-path" x1="0" y1="0" x2="0" y2="0" display="none"/>
+          <line id="trackLine30" class="track-path" x1="0" y1="0" x2="0" y2="0" display="none"/>
+          <line id="trackLine31" class="track-path" x1="0" y1="0" x2="0" y2="0" display="none"/>
+          <line id="trackLine32" class="track-path" x1="0" y1="0" x2="0" y2="0" display="none"/>
+          <line id="trackLine33" class="track-path" x1="0" y1="0" x2="0" y2="0" display="none"/>
+          <line id="trackLine34" class="track-path" x1="0" y1="0" x2="0" y2="0" display="none"/>
+          <line id="trackLine35" class="track-path" x1="0" y1="0" x2="0" y2="0" display="none"/>
+          <line id="trackLine36" class="track-path" x1="0" y1="0" x2="0" y2="0" display="none"/>
+          <line id="trackLine37" class="track-path" x1="0" y1="0" x2="0" y2="0" display="none"/>
+          <line id="trackLine38" class="track-path" x1="0" y1="0" x2="0" y2="0" display="none"/>
+          <line id="trackLine39" class="track-path" x1="0" y1="0" x2="0" y2="0" display="none"/>
+          <line id="trackLine40" class="track-path" x1="0" y1="0" x2="0" y2="0" display="none"/>
+          <line id="trackLine41" class="track-path" x1="0" y1="0" x2="0" y2="0" display="none"/>
+          <line id="trackLine42" class="track-path" x1="0" y1="0" x2="0" y2="0" display="none"/>
+          <line id="trackLine43" class="track-path" x1="0" y1="0" x2="0" y2="0" display="none"/>
+          <line id="trackLine44" class="track-path" x1="0" y1="0" x2="0" y2="0" display="none"/>
+          <line id="trackLine45" class="track-path" x1="0" y1="0" x2="0" y2="0" display="none"/>
+          <line id="trackLine46" class="track-path" x1="0" y1="0" x2="0" y2="0" display="none"/>
+          <line id="trackLine47" class="track-path" x1="0" y1="0" x2="0" y2="0" display="none"/>
+          <line id="trackLine48" class="track-path" x1="0" y1="0" x2="0" y2="0" display="none"/>
+          <line id="trackLine49" class="track-path" x1="0" y1="0" x2="0" y2="0" display="none"/>
           <!-- Start marker -->
           <circle id="startMarker" class="start-marker" cx="0" cy="0" r="4" display="none"/>
           <!-- Current position marker -->
